@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tools Overview — Presentation</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: #2e3350;
+    --text: #e8eaf6;
+    --muted: #8b92b8;
+    --accent: #5c7cfa;
+    --accent2: #7c5cd8;
+    --green: #36c98e;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --tag-bg: rgba(92,124,250,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ── SLIDES ── */
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 80px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .slide:last-child { border-bottom: none; }
+
+  /* ── TITLE SLIDE ── */
+  .slide-title {
+    background: linear-gradient(135deg, #0f1117 0%, #1a1d27 60%, #1a0d2e 100%);
+    align-items: center;
+    text-align: center;
+  }
+  .slide-title .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  .slide-title h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+  .slide-title h1 span { color: var(--accent); }
+  .slide-title .subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 580px;
+  }
+  .slide-title .pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .pill {
+    background: var(--tag-bg);
+    border: 1px solid rgba(92,124,250,0.35);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12.5px;
+    color: var(--accent);
+  }
+
+  /* ── SLIDE HEADERS ── */
+  .slide-header {
+    margin-bottom: 2rem;
+  }
+  .slide-header .slide-num {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  .slide-header h2 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .slide-header p {
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    max-width: 720px;
+  }
+
+  /* ── TOOL CARDS ── */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .tool-card:hover { border-color: var(--accent); }
+  .tool-card .tc-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .tool-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .tool-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .tool-card .vendor {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .tool-card .category-badge {
+    margin-left: auto;
+    font-size: 10.5px;
+    padding: 3px 9px;
+    border-radius: 8px;
+    white-space: nowrap;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .tool-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .tool-card .kf-list {
+    list-style: none;
+    padding: 0;
+  }
+  .tool-card .kf-list li {
+    font-size: 12.5px;
+    color: #c5caf0;
+    padding: 3px 0 3px 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .tool-card .kf-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+    top: 5px;
+  }
+  .tool-card .tc-footer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  /* ── CATEGORY COLORS ── */
+  .cat-ai-assistant { background: rgba(59,130,212,0.18); color: #5c9dfa; border-color: rgba(59,130,212,0.3); }
+  .cat-dev-agent    { background: rgba(124,92,216,0.18); color: #a87cf8; border-color: rgba(124,92,216,0.3); }
+  .cat-ide-agent    { background: rgba(16,185,129,0.18); color: #34d39a; border-color: rgba(16,185,129,0.3); }
+  .cat-enterprise   { background: rgba(245,158,11,0.18); color: #fbbf24; border-color: rgba(245,158,11,0.3); }
+  .cat-ms           { background: rgba(0,128,255,0.15);  color: #60a5fa; border-color: rgba(0,128,255,0.3); }
+
+  .icon-google  { background: rgba(66,133,244,0.2);  color: #4285f4; }
+  .icon-openai  { background: rgba(16,163,127,0.2);  color: #10a37f; }
+  .icon-anthropic{ background: rgba(204,102,0,0.2);  color: #f5832a; }
+  .icon-cursor  { background: rgba(124,92,216,0.2);  color: #9b72f0; }
+  .icon-ibm     { background: rgba(26,98,186,0.2);   color: #1a62ba; }
+  .icon-ms      { background: rgba(0,120,212,0.2);   color: #0078d4; }
+
+  /* ── MATRIX / COMPARISON TABLE ── */
+  .matrix-wrap {
+    overflow-x: auto;
+    margin-top: 0.5rem;
+  }
+  table.matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  table.matrix th {
+    background: var(--surface2);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  table.matrix td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(46,51,80,0.6);
+    vertical-align: top;
+    color: #d0d4f0;
+  }
+  table.matrix tr:last-child td { border-bottom: none; }
+  table.matrix tr:hover td { background: rgba(92,124,250,0.04); }
+  .matrix .tool-name { font-weight: 600; color: #fff; white-space: nowrap; }
+  .matrix .cat-cell { font-size: 11.5px; }
+  .matrix .dot-yes { color: var(--green); font-size: 15px; }
+  .matrix .dot-partial { color: var(--amber); font-size: 15px; }
+  .matrix .dot-no { color: #444; font-size: 15px; }
+
+  /* ── CATEGORY SECTION HEADERS ── */
+  .cat-section {
+    background: var(--surface);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 24px;
+    margin-bottom: 20px;
+  }
+  .cat-section.c2 { border-color: var(--accent2); }
+  .cat-section.c3 { border-color: var(--green); }
+  .cat-section.c4 { border-color: var(--amber); }
+  .cat-section h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .cat-section p  { font-size: 13px; color: var(--muted); }
+
+  /* ── COMPARISON DEEP DIVE ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .cmp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .cmp-header {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cmp-header .tool-icon { width: 34px; height: 34px; font-size: 14px; border-radius: 8px; }
+  .cmp-header h4 { font-size: 0.95rem; font-weight: 700; color: #fff; }
+  .cmp-header span { font-size: 11.5px; color: var(--muted); }
+  .cmp-body { padding: 14px 18px; }
+  .strength-row {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+    margin-bottom: 7px;
+  }
+  .strength-row .s-icon { font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+  .strength-row .s-text { font-size: 12.5px; color: #c5caf0; line-height: 1.5; }
+  .limit-row {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 7px 0 0 0;
+    border-top: 1px solid var(--border);
+    margin-top: 6px;
+  }
+  .limit-row strong { color: #e8a44a; }
+
+  /* ── WHEN TO USE TABLE ── */
+  .wtu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .wtu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .wtu-card h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .wtu-card h4 .tag { margin: 0; }
+  .wtu-card ul { list-style: none; padding: 0; }
+  .wtu-card ul li {
+    font-size: 12.5px;
+    color: var(--muted);
+    padding: 3px 0 3px 14px;
+    position: relative;
+  }
+  .wtu-card ul li::before { content: '·'; position: absolute; left: 3px; color: var(--accent); }
+
+  /* ── SUMMARY SLIDE ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 0.5rem;
+  }
+  .sum-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .sum-card .sum-icon { font-size: 26px; margin-bottom: 8px; }
+  .sum-card .sum-name { font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .sum-card .sum-one  { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  /* ── NAV BAR ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 48px;
+    background: rgba(15,17,23,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    gap: 6px;
+    overflow-x: auto;
+  }
+  .nav a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .nav a:hover { color: #fff; background: var(--surface2); }
+  .nav .nav-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-right: 12px; white-space: nowrap; }
+  .nav-sep { color: var(--border); padding: 0 2px; }
+
+  /* ── UTILITIES ── */
+  .mt1 { margin-top: 8px; }
+  .mt2 { margin-top: 16px; }
+  .mt3 { margin-top: 24px; }
+  .flex { display: flex; gap: 10px; flex-wrap: wrap; }
+  .callout {
+    background: rgba(92,124,250,0.1);
+    border: 1px solid rgba(92,124,250,0.3);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 13.5px;
+    color: #c5caf0;
+    margin-top: 20px;
+  }
+  .callout strong { color: var(--accent); }
+
+  body { padding-top: 48px; }
+
+  @media (max-width: 700px) {
+    .slide { padding: 40px 20px; }
+    .tool-grid { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-title">AI Tools</span>
+  <a href="#s0">Intro</a>
+  <a href="#s1">Categories</a>
+  <a href="#s2">Chat Assistants</a>
+  <a href="#s3">Dev Agents</a>
+  <a href="#s4">IBM Tools</a>
+  <a href="#s5">Matrix</a>
+  <a href="#s6">Comparisons</a>
+  <a href="#s7">When to Use</a>
+  <a href="#s8">Summary</a>
+</nav>
+
+<!-- ════════════════════════════════════════
+     SLIDE 0 — TITLE
+══════════════════════════════════════════ -->
+<section class="slide slide-title" id="s0">
+  <div class="eyebrow">IBM Consulting · AI Enablement</div>
+  <h1>Navigating the <span>AI Tool Landscape</span></h1>
+  <p class="subtitle">A practical guide to 10 leading AI tools — what they are, how they compare, and when to use each one.</p>
+  <div class="pills">
+    <span class="pill">Google Antigravity</span>
+    <span class="pill">Google Gemini</span>
+    <span class="pill">OpenAI ChatGPT</span>
+    <span class="pill">OpenAI Codex</span>
+    <span class="pill">Anthropic Claude</span>
+    <span class="pill">Anthropic Claude Code</span>
+    <span class="pill">Cursor</span>
+    <span class="pill">IBM Bob</span>
+    <span class="pill">IBM ICA</span>
+    <span class="pill">IBM ICA Edge</span>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SLIDE 1 — FOUR CATEGORIES
+══════════════════════════════════════════ -->
+<section class="slide" id="s1">
+  <div class="slide-header">
+    <div class="slide-num">01 — Framework</div>
+    <h2>Four Categories of AI Tools</h2>
+    <p>Understanding what a tool <em>is</em> before deciding when to use it. Every tool on our list falls into one of four archetypes.</p>
+  </div>
+
+  <div class="cat-section" style="border-color:#5c7cfa;">
+    <h3>① General-Purpose AI Assistants</h3>
+    <p><strong>Tools:</strong> Google Gemini · OpenAI ChatGPT · Anthropic Claude<br>
+    A conversational AI you talk to. Great for research, writing, analysis, summarisation, brainstorming, and code explanation. You bring the task; it brings broad knowledge. Works best when you are guiding the interaction step by step.</p>
+  </div>
+
+  <div class="cat-section c2 mt2">
+    <h3>② Agentic Coding Tools — Terminal / CLI First</h3>
+    <p><strong>Tools:</strong> Google Antigravity · OpenAI Codex · Anthropic Claude Code · IBM Bob<br>
+    AI agents that write, test, and refactor code across your full codebase. They read files, run shell commands, browse the web, and work end-to-end with minimal hand-holding. Live in your IDE, terminal, or both.</p>
+  </div>
+
+  <div class="cat-section c3 mt2">
+    <h3>③ AI-Native IDEs — Code Editor + Agent Bundled</h3>
+    <p><strong>Tools:</strong> Cursor<br>
+    A full code editor that replaces or extends VS Code, with deep agentic capability built into the editing surface. Inline diffs, multi-file context, cloud agents, and a model marketplace — all in one app.</p>
+  </div>
+
+  <div class="cat-section c4 mt2">
+    <h3>④ Enterprise AI Platforms — Governed Workspaces</h3>
+    <p><strong>Tools:</strong> Microsoft Copilot · IBM ICA (IBM Consulting Advantage) · IBM ICA Edge<br>
+    Productivity and delivery platforms tightly integrated with an organisation's existing tools, data, and governance. Not a raw model — a governed, role-specific experience that brings AI into the flow of real work at enterprise scale.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SLIDE 2 — GENERAL-PURPOSE AI ASSISTANTS
+══════════════════════════════════════════ -->
+<section class="slide" id="s2">
+  <div class="slide-header">
+    <div class="slide-num">02 — Category 1</div>
+    <h2>General-Purpose AI Assistants</h2>
+    <p>Conversational AI you interact with through chat. Broad knowledge, multimodal in most cases, best when used interactively.</p>
+  </div>
+
+  <div class="tool-grid">
+
+    <!-- GEMINI -->
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-google">G</div>
+        <div>
+          <h3>Google Gemini</h3>
+          <div class="vendor">Google DeepMind</div>
+        </div>
+        <span class="category-badge cat-ai-assistant">AI Assistant</span>
+      </div>
+      <p>Google's flagship multimodal AI assistant — available as a web app, mobile app, and embedded into Google Workspace. Powered by the Gemini family of models (currently Gemini 3 Pro / Flash), it handles text, images, audio, and code in a single conversation. Originally launched as "Bard" in March 2023.</p>
+      <ul class="kf-list">
+        <li>Deep integration with Google Workspace (Gmail, Docs, Sheets, Meet)</li>
+        <li>Multimodal: text, images, audio, video, and code</li>
+        <li>Deep Research mode for extended, cited research tasks</li>
+        <li>Gemini Live — real-time voice conversation with camera sharing</li>
+        <li>Canvas — collaborative writing and document creation surface</li>
+        <li>Gem-bots — customisable expert personas for recurring tasks</li>
+        <li>Extensions to YouTube, Maps, and Google services</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">Multimodal</span>
+        <span class="tag">Google Workspace</span>
+        <span class="tag">Consumer + Business</span>
+        <span class="tag">Web / Mobile</span>
+      </div>
+    </div>
+
+    <!-- CHATGPT -->
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-openai">⊙</div>
+        <div>
+          <h3>OpenAI ChatGPT</h3>
+          <div class="vendor">OpenAI</div>
+        </div>
+        <span class="category-badge cat-ai-assistant">AI Assistant</span>
+      </div>
+      <p>OpenAI's consumer and enterprise AI assistant — the tool that popularised conversational AI. Powers GPT-5 and o-series reasoning models. ChatGPT is the interface; the underlying API serves developers through the Responses API and Agents SDK with tools like web search, code interpreter, file search, and computer use.</p>
+      <ul class="kf-list">
+        <li>Access to GPT-5 and o-series reasoning models</li>
+        <li>Built-in web search, code interpreter, image generation (DALL·E), and file analysis</li>
+        <li>Projects for persistent, organised multi-session work</li>
+        <li>Memory — remembers context across conversations</li>
+        <li>GPT-Live — real-time voice and screen sharing</li>
+        <li>ChatGPT Teams/Enterprise with privacy and admin controls</li>
+        <li>Strong developer API ecosystem (Responses API, Agents SDK, MCP support)</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">GPT-5 / o-series</span>
+        <span class="tag">Reasoning Models</span>
+        <span class="tag">Consumer + Enterprise</span>
+        <span class="tag">API Ecosystem</span>
+      </div>
+    </div>
+
+    <!-- CLAUDE -->
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-anthropic">A</div>
+        <div>
+          <h3>Anthropic Claude</h3>
+          <div class="vendor">Anthropic</div>
+        </div>
+        <span class="category-badge cat-ai-assistant">AI Assistant</span>
+      </div>
+      <p>Anthropic's general AI assistant — built around Constitutional AI for safety and helpfulness. Claude is specifically positioned as a <em>problem solver</em> and <em>task executor</em>. The latest "Cowork" feature (part of Claude Pro/Max) allows Claude to run multi-step tasks autonomously across your tools — reading transcripts, updating CRM records, building presentations.</p>
+      <ul class="kf-list">
+        <li>Industry-leading long context window (up to 1M tokens on Claude Opus)</li>
+        <li>Strong reasoning, analysis, and document comprehension</li>
+        <li>Cowork mode — autonomous multi-step task execution across connected apps</li>
+        <li>Integrations: Google Drive, Salesforce, Slack, Gmail, Gong, BigQuery, Jira</li>
+        <li>Projects — persistent memory and context for ongoing work</li>
+        <li>Styles — consistent tone and voice for writing tasks</li>
+        <li>Safety-first design via Constitutional AI</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">Long Context</span>
+        <span class="tag">Constitutional AI</span>
+        <span class="tag">Cowork / Agentic</span>
+        <span class="tag">Safety Focus</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout mt3">
+    <strong>Key takeaway:</strong> These three tools are broadly interchangeable for general chat, writing, and research. The key differentiators are <strong>ecosystem</strong> (Gemini → Google Workspace; Copilot → Microsoft 365; ChatGPT → OpenAI API), <strong>reasoning depth</strong> (ChatGPT's o-series models lead for complex multi-step reasoning), and <strong>safety / trust</strong> (Claude leads on Constitutional AI and long-context fidelity).
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SLIDE 3 — AGENTIC CODING TOOLS
+══════════════════════════════════════════ -->
+<section class="slide" id="s3">
+  <div class="slide-header">
+    <div class="slide-num">03 — Category 2 &amp; 3</div>
+    <h2>Agentic Coding Tools &amp; AI-Native IDEs</h2>
+    <p>Tools that do more than <em>suggest</em> code — they autonomously read, write, test, and ship across your full codebase.</p>
+  </div>
+
+  <div class="tool-grid">
+
+    <!-- ANTIGRAVITY -->
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-google">▲</div>
+        <div>
+          <h3>Google Antigravity</h3>
+          <div class="vendor">Google</div>
+        </div>
+        <span class="category-badge cat-dev-agent">Dev Agent</span>
+      </div>
+      <p>Google's agentic coding platform — available as a desktop app (Antigravity 2.0), a CLI (<code>agy</code>), and IDE extensions for VS Code, JetBrains, Zed, and Xcode. Designed to be the "central command center" for AI agents that execute complex coding and knowledge work tasks. Acts as an independent agent manager, not dependent on a specific IDE.</p>
+      <ul class="kf-list">
+        <li>Standalone desktop app (2.0) — manages multiple agents synchronously or asynchronously</li>
+        <li>Skills system — custom, reusable agent behaviours (similar to Bob's skills)</li>
+        <li>Browser automation via Chrome integration with allowlist/denylist controls</li>
+        <li>Terminal sandbox for safe code execution</li>
+        <li>MCP server integration and custom subagents</li>
+        <li>Projects — scoped workspace with isolated security policies</li>
+        <li>Artifacts — visual implementation plans and walkthroughs</li>
+        <li>Local model support and headless / CI execution modes</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">Desktop + CLI + IDE</span>
+        <span class="tag">Gemini Models</span>
+        <span class="tag">MCP</span>
+        <span class="tag">Browser Automation</span>
+      </div>
+    </div>
+
+    <!-- CODEX -->
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-openai">◻</div>
+        <div>
+          <h3>OpenAI Codex</h3>
+          <div class="vendor">OpenAI</div>
+        </div>
+        <span class="category-badge cat-dev-agent">Dev Agent</span>
+      </div>
+      <p>OpenAI's cloud-based software engineering agent — accessible via the ChatGPT interface and the OpenAI API (Agents SDK). Unlike a CLI tool, Codex runs in a cloud sandbox, executing tasks in parallel on your repository. It is purpose-built for multi-file, multi-step coding tasks: writing new features, fixing bugs, migrating code, writing tests, and reviewing PRs.</p>
+      <ul class="kf-list">
+        <li>Runs in isolated cloud sandboxes with internet-restricted access to your repo</li>
+        <li>Asynchronous — kick off tasks and come back when done</li>
+        <li>GitHub integration — reads PRs, creates commits, and opens pull requests</li>
+        <li>Parallel execution — multiple tasks running simultaneously</li>
+        <li>Powered by codex-1 model, optimised for software engineering tasks</li>
+        <li>Accessible via ChatGPT Pro/Enterprise or via the Agents SDK</li>
+        <li>Shell, file read/write, and test runner tools built in</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">Cloud Sandbox</span>
+        <span class="tag">GitHub Integration</span>
+        <span class="tag">Async Tasks</span>
+        <span class="tag">codex-1 Model</span>
+      </div>
+    </div>
+
+    <!-- CLAUDE CODE -->
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-anthropic">✦</div>
+        <div>
+          <h3>Anthropic Claude Code</h3>
+          <div class="vendor">Anthropic</div>
+        </div>
+        <span class="category-badge cat-dev-agent">Dev Agent</span>
+      </div>
+      <p>Anthropic's autonomous coding agent — available as a terminal CLI, VS Code/JetBrains extension, desktop app, and via the web (claude.ai/code). Unlike ChatGPT-based Codex (cloud-only), Claude Code runs locally and understands your entire codebase. Supports GitHub Actions and GitLab CI/CD integration for automated code review and issue triage.</p>
+      <ul class="kf-list">
+        <li>Full-featured terminal CLI — edit files, run commands, manage the whole project</li>
+        <li>VS Code, JetBrains, and Zed extensions with inline diffs</li>
+        <li>Desktop app with multi-session, diff review, and scheduled tasks</li>
+        <li>Understands the full codebase — not just what's open</li>
+        <li>Git-native — stages changes, writes commit messages, opens PRs</li>
+        <li>MCP connections — links to Google Drive, Jira, Slack, and custom tools</li>
+        <li>Web mode — work on remote repos without local setup</li>
+        <li>Plugins — customisable instructions, skills, and lifecycle hooks</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">CLI + IDE + Desktop</span>
+        <span class="tag">Git-Native</span>
+        <span class="tag">MCP</span>
+        <span class="tag">CI/CD Integration</span>
+      </div>
+    </div>
+
+    <!-- CURSOR -->
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-cursor">⌖</div>
+        <div>
+          <h3>Cursor</h3>
+          <div class="vendor">Anysphere</div>
+        </div>
+        <span class="category-badge cat-ide-agent">AI-Native IDE</span>
+      </div>
+      <p>A full AI-native code editor (forked from VS Code) where the AI agent is woven into the editing experience itself. Cursor is a model marketplace — you choose from every frontier model (GPT-5, Claude Opus, Gemini 3, Grok, Composer) per task. Trusted by over half of Fortune 500 companies and used by teams at NVIDIA, Stripe, and Cloudflare.</p>
+      <ul class="kf-list">
+        <li>Full VS Code fork — existing settings and extensions carry over</li>
+        <li>Agent mode — autonomous multi-file edits with plan-then-execute flow</li>
+        <li>Cloud Agents — launch fleets running in parallel for hours or days</li>
+        <li>Model choice — every top model available per conversation</li>
+        <li>Plan Mode + Code Mode — structured workflow for complex features</li>
+        <li>Deep integrations: GitHub, GitLab, Azure DevOps, Bitbucket, Slack, Jira, Linear</li>
+        <li>Grok Bot — bots that sign in to your tools and complete work autonomously</li>
+        <li>Enterprise: SSO, privacy mode, self-hosted machines, admin dashboard</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">AI-Native IDE</span>
+        <span class="tag">Model Marketplace</span>
+        <span class="tag">Cloud Agents</span>
+        <span class="tag">Enterprise</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout mt3">
+    <strong>Key takeaway:</strong> Antigravity, Codex, and Claude Code are all agentic CLI/terminal-first tools; Cursor bundles a full IDE. The unique angle for each: <strong>Antigravity</strong> has Google's ecosystem and browser automation; <strong>Codex</strong> excels at async, parallel cloud tasks; <strong>Claude Code</strong> has the deepest local codebase understanding and broadest surface options; <strong>Cursor</strong> is the best choice when you want to stay in your editor and choose your model.
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SLIDE 4 — IBM TOOLS
+══════════════════════════════════════════ -->
+<section class="slide" id="s4">
+  <div class="slide-header">
+    <div class="slide-num">04 — IBM Tools</div>
+    <h2>IBM's AI Tool Ecosystem</h2>
+    <p>Three purpose-built IBM tools with distinct audiences and use cases — and important security, governance, and enterprise-grade differentiators.</p>
+  </div>
+
+  <div class="tool-grid">
+
+    <!-- IBM BOB -->
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-ibm">B</div>
+        <div>
+          <h3>IBM Bob</h3>
+          <div class="vendor">IBM</div>
+        </div>
+        <span class="category-badge cat-dev-agent">Dev Agent</span>
+      </div>
+      <p>IBM's agentic IDE — an AI SDLC (Software Development Lifecycle) partner for IBM software engineers. Bob reads and writes files, runs terminal commands, browses the web, and uses MCP tools to help developers understand, plan, improve, and build confidently with real IBM codebases. Approved for use on all IBM product codebases.</p>
+      <ul class="kf-list">
+        <li>IDE integration (VS Code, JetBrains) plus Bob Shell for terminal use</li>
+        <li>Three specialised modes: Ask (understand code), Plan (design solutions), Code (implement)</li>
+        <li>Subagents — Bob delegates complex, parallel subtasks to specialised agents</li>
+        <li>Skills — extend Bob with domain-specific knowledge and behaviour</li>
+        <li>Automatic intelligent model routing (complexity, context size, cost)</li>
+        <li>Full approval workflow — review and approve every proposed file change</li>
+        <li>IBM-internal security governance: no SPI, no PHI, no export-controlled code</li>
+        <li>Enterprise deployment with team spending limits, admin dashboard, and usage analytics</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">IBM Internal</span>
+        <span class="tag">Enterprise Governance</span>
+        <span class="tag">SDLC-Focused</span>
+        <span class="tag">Subagents + Skills</span>
+      </div>
+    </div>
+
+    <!-- ICA -->
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-ibm">I</div>
+        <div>
+          <h3>IBM ICA (IBM Consulting Advantage)</h3>
+          <div class="vendor">IBM Consulting</div>
+        </div>
+        <span class="category-badge cat-enterprise">Enterprise Platform</span>
+      </div>
+      <p>IBM Consulting Advantage (ICA) is the central AI delivery platform for IBM Consulting — not a single product but an ecosystem. It provides IBM consultants with governed access to AI assistants, agents, agentic applications, and tools across the entire project lifecycle. ICA is a multi-experience platform: Chat UI, ICA Edge, APIs, Mobile, and a Sidebar.</p>
+      <ul class="kf-list">
+        <li>Consulting Assistants — role-based, prebuilt AI assistants for every project phase</li>
+        <li>Assistant Packs — curated bundles by domain, industry, or technology</li>
+        <li>Agents — coded AI that autonomously access apps and data sources via tools</li>
+        <li>Agentic App Studio — low-code builder for multi-agent workflows with governance</li>
+        <li>Context Studio — enterprise knowledge graph and RAG management</li>
+        <li>Process Studio — transforms business processes into governed agentic workflows</li>
+        <li>Multi-model fabric: Granite / watsonx · Bedrock · Azure OpenAI · open-source</li>
+        <li>MCP Gateway, audit trails, observability, and compliance built in</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">IBM Consulting</span>
+        <span class="tag">Multi-Experience</span>
+        <span class="tag">Watsonx / Granite</span>
+        <span class="tag">Governance</span>
+      </div>
+    </div>
+
+    <!-- ICA EDGE -->
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-ibm">E</div>
+        <div>
+          <h3>IBM ICA Edge</h3>
+          <div class="vendor">IBM Consulting</div>
+        </div>
+        <span class="category-badge cat-enterprise">Enterprise Platform</span>
+      </div>
+      <p>ICA Edge is the desktop-native surface of IBM Consulting Advantage — a secure agentic AI workspace running inside a Linux microVM on your laptop. It extends ICA's capabilities to the consultant's desktop without sending sensitive data to the cloud. Unlike a chat tool, Edge plans and executes multi-step tasks with browser automation, code execution, and live editable artifacts.</p>
+      <ul class="kf-list">
+        <li>Runs entirely inside a sandboxed Linux microVM — data never leaves your laptop</li>
+        <li>Agentic by default: builds dependency-aware Task Plans you approve before execution</li>
+        <li>Pre-built Skills for RFPs, Pricing, Research, Presentations, SOW/Risk, BPMN flows</li>
+        <li>Browser automation — drives SAP, ServiceNow, Salesforce as a consultant would (40% faster)</li>
+        <li>Live, versioned artifact library — decks, dashboards, deliverables stay editable</li>
+        <li>Network egress control — DNS allowlist + kill switch; no data leakage</li>
+        <li>Prompt injection defence — every tool result scanned before the model processes it</li>
+        <li>Connected Folders — Box and OneDrive mounted directly into the VM</li>
+        <li>Any model, including fully local — Granite, watsonx, Bedrock, Azure OpenAI</li>
+        <li>ROI tracking built into the task flow</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">Desktop-Native</span>
+        <span class="tag">Local Privacy</span>
+        <span class="tag">Consulting</span>
+        <span class="tag">Sandboxed microVM</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout mt3">
+    <strong>IBM Internal note — Edge vs. Bob:</strong> These tools complement each other and serve different personas. <strong>ICA Edge</strong> is built for IBM Consulting business users and consultants delivering client work (proposals, RFPs, decks, process flows, deliverables). <strong>IBM Bob</strong> is optimised for software development teams (writing, testing, and maintaining code). Use whichever fits the task — or both.
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SLIDE 5 — MICROSOFT COPILOT
+══════════════════════════════════════════ -->
+<section class="slide" id="s4b" style="min-height:auto; padding-bottom:40px; border-bottom:1px solid var(--border)">
+  <div class="slide-header">
+    <div class="slide-num">04b — Enterprise AI Platform</div>
+    <h2>Microsoft Copilot</h2>
+    <p>Microsoft's enterprise AI assistant — tightly integrated with Microsoft 365 and the full Microsoft cloud ecosystem.</p>
+  </div>
+
+  <div class="tool-grid" style="grid-template-columns:1fr;">
+    <div class="tool-card">
+      <div class="tc-top">
+        <div class="tool-icon icon-ms">M</div>
+        <div>
+          <h3>Microsoft 365 Copilot</h3>
+          <div class="vendor">Microsoft</div>
+        </div>
+        <span class="category-badge cat-enterprise">Enterprise Platform</span>
+      </div>
+      <p>Microsoft's AI layer across the entire Microsoft 365 suite — available in Word, Excel, PowerPoint, Outlook, OneNote, and Teams. Copilot comes in three tiers: <strong>Basic</strong> (web-grounded chat only), <strong>M365 Basic</strong> (in-app Copilot with standard access), and <strong>M365 Premium</strong> (full organisational data grounding via Microsoft Graph and Work IQ). Protected by Enterprise Data Protection (EDP) on all tiers.</p>
+      <ul class="kf-list">
+        <li>Word: draft, rewrite, and summarise documents</li>
+        <li>Excel: analyse data, generate formulas, create charts and insights</li>
+        <li>PowerPoint: create presentations from prompts or existing content</li>
+        <li>Outlook: draft emails, summarise threads, coaching for clarity and tone</li>
+        <li>Teams: summarise and transcribe meetings, capture action items (up to 30 days)</li>
+        <li>Microsoft Graph grounding — personalised context from emails, calendars, files, and org charts (Premium)</li>
+        <li>Work IQ — intelligence layer for agents to reason over organisational data</li>
+        <li>Copilot Search — AI-powered universal search across all M365 apps</li>
+        <li>Microsoft Agents — scoped AI assistants that automate business processes</li>
+        <li>Cowork — carries out tasks across your M365 environment autonomously (usage-based billing)</li>
+      </ul>
+      <div class="tc-footer">
+        <span class="tag">Microsoft 365</span>
+        <span class="tag">Microsoft Graph</span>
+        <span class="tag">Enterprise Data Protection</span>
+        <span class="tag">Agents</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout mt3">
+    <strong>Key differentiator:</strong> Microsoft Copilot's power is its <strong>depth of Microsoft 365 integration</strong>. No other tool has native access to your email history, calendar, SharePoint, and org relationships in the same way. If your team already lives in Microsoft 365, Copilot meets you there.
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SLIDE 5 — COMPARISON MATRIX
+══════════════════════════════════════════ -->
+<section class="slide" id="s5">
+  <div class="slide-header">
+    <div class="slide-num">05 — Matrix</div>
+    <h2>Side-by-Side Comparison Matrix</h2>
+    <p>All 10 tools across 10 key dimensions. ● = Yes / native &nbsp; ◑ = Partial / with add-on &nbsp; ○ = No</p>
+  </div>
+
+  <div class="matrix-wrap">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Category</th>
+          <th>Code Agent</th>
+          <th>Chat / General</th>
+          <th>Enterprise Governed</th>
+          <th>Local / On-Device</th>
+          <th>Browser Automation</th>
+          <th>Multi-Model Choice</th>
+          <th>MCP Support</th>
+          <th>Integrations</th>
+          <th>IBM Internal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool-name">Google Gemini</td>
+          <td class="cat-cell"><span class="category-badge cat-ai-assistant">AI Assistant</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td>Google Workspace</td>
+          <td><span class="dot-no">○</span></td>
+        </tr>
+        <tr>
+          <td class="tool-name">OpenAI ChatGPT</td>
+          <td class="cat-cell"><span class="category-badge cat-ai-assistant">AI Assistant</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td>Plugins, GPTs</td>
+          <td><span class="dot-no">○</span></td>
+        </tr>
+        <tr>
+          <td class="tool-name">Anthropic Claude</td>
+          <td class="cat-cell"><span class="category-badge cat-ai-assistant">AI Assistant</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td>Cowork integrations</td>
+          <td><span class="dot-no">○</span></td>
+        </tr>
+        <tr>
+          <td class="tool-name">Google Antigravity</td>
+          <td class="cat-cell"><span class="category-badge cat-dev-agent">Dev Agent</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td>Chrome, Firebase</td>
+          <td><span class="dot-no">○</span></td>
+        </tr>
+        <tr>
+          <td class="tool-name">OpenAI Codex</td>
+          <td class="cat-cell"><span class="category-badge cat-dev-agent">Dev Agent</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td>GitHub</td>
+          <td><span class="dot-no">○</span></td>
+        </tr>
+        <tr>
+          <td class="tool-name">Claude Code</td>
+          <td class="cat-cell"><span class="category-badge cat-dev-agent">Dev Agent</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td>GitHub, GitLab, Slack</td>
+          <td><span class="dot-no">○</span></td>
+        </tr>
+        <tr>
+          <td class="tool-name">Cursor</td>
+          <td class="cat-cell"><span class="category-badge cat-ide-agent">AI IDE</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td>GitHub, GitLab, Jira, Slack</td>
+          <td><span class="dot-no">○</span></td>
+        </tr>
+        <tr>
+          <td class="tool-name">IBM Bob</td>
+          <td class="cat-cell"><span class="category-badge cat-dev-agent">Dev Agent</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td>IBM internal tools</td>
+          <td><span class="dot-yes">●</span></td>
+        </tr>
+        <tr>
+          <td class="tool-name">IBM ICA</td>
+          <td class="cat-cell"><span class="category-badge cat-enterprise">Enterprise</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td>SAP, ServiceNow, Salesforce, ERP</td>
+          <td><span class="dot-yes">●</span></td>
+        </tr>
+        <tr>
+          <td class="tool-name">IBM ICA Edge</td>
+          <td class="cat-cell"><span class="category-badge cat-enterprise">Enterprise</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td>Box, OneDrive, SAP, ServiceNow</td>
+          <td><span class="dot-yes">●</span></td>
+        </tr>
+        <tr>
+          <td class="tool-name">Microsoft Copilot</td>
+          <td class="cat-cell"><span class="category-badge cat-ms">Enterprise</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-no">○</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td><span class="dot-partial">◑</span></td>
+          <td>Microsoft 365 suite, SharePoint</td>
+          <td><span class="dot-no">○</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SLIDE 6 — DEEP DIVE COMPARISONS
+══════════════════════════════════════════ -->
+<section class="slide" id="s6">
+  <div class="slide-header">
+    <div class="slide-num">06 — Deep Dive</div>
+    <h2>Within-Category Strengths &amp; Differences</h2>
+    <p>What makes each tool distinct from its closest competitors — and where each one falls short.</p>
+  </div>
+
+  <!-- AI Assistants comparison -->
+  <div class="cat-section" style="border-color:#5c7cfa; margin-bottom:20px;">
+    <h3>AI Assistants: Gemini vs. ChatGPT vs. Claude</h3>
+  </div>
+  <div class="compare-grid">
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-google">G</div>
+        <div><h4>Google Gemini</h4><span>Best for Google-native teams</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Deepest Google Workspace integration — Gemini is embedded in Gmail, Docs, Sheets, Meet</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Multimodal strength — handles images, audio, and video natively</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Google Search grounding — can surface real-time, cited web results</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Gemini Live — real-time voice with camera awareness</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> Less code-focused than Claude or ChatGPT; Workspace integrations require a Google account ecosystem</div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-openai">⊙</div>
+        <div><h4>OpenAI ChatGPT</h4><span>Best for reasoning + developer ecosystem</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">o-series reasoning models (o3, o4-mini) — best in class for multi-step logical reasoning</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Strongest developer API ecosystem — Responses API, Agents SDK, MCP, fine-tuning</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">GPT-Live — real-time voice and screen sharing for interactive demos</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Broadest third-party plugin and GPT store ecosystem</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> Privacy concerns for enterprise use; pricing complexity across tiers; Codex is a separate product for coding agents</div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-anthropic">A</div>
+        <div><h4>Anthropic Claude</h4><span>Best for long documents + safety</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Longest context window (up to 1M tokens on Opus) — ideal for large document analysis</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Constitutional AI — built-in safety, less likely to produce harmful or misleading outputs</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Cowork — most complete autonomous task execution across business integrations</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Nuanced, high-quality writing — preferred for polished long-form content</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> Less tightly embedded in enterprise productivity suites; no native image generation; can be over-cautious</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dev Agents comparison -->
+  <div class="cat-section c2 mt3" style="margin-bottom:20px;">
+    <h3>Dev Agents: Antigravity vs. Codex vs. Claude Code vs. IBM Bob vs. Cursor</h3>
+  </div>
+  <div class="compare-grid">
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-google">▲</div>
+        <div><h4>Google Antigravity</h4><span>Best for Google-stack developers</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Standalone desktop app (2.0) — not dependent on any IDE</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Broad IDE support: VS Code, JetBrains, Zed, Xcode, Visual Studio</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Skills system — reusable, shareable agent behaviours</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Firebase Studio / Google Cloud deep integration</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> Relatively newer product; less third-party ecosystem maturity vs. Cursor; model choice limited to Gemini family</div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-openai">◻</div>
+        <div><h4>OpenAI Codex</h4><span>Best for async, parallel cloud tasks</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Cloud sandbox — run tasks without local setup or permissions</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Parallel execution — multiple long-running tasks simultaneously</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Strong GitHub PR integration — automates review, issue triage</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Familiar via ChatGPT — no separate install for users already on ChatGPT Pro</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> Cloud-only — can't access local files or corporate networks; no IDE embedding; limited to codex-1 model</div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-anthropic">✦</div>
+        <div><h4>Anthropic Claude Code</h4><span>Best for deep local codebase work</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Widest surface coverage: CLI, VS Code, JetBrains, Desktop, Web, iOS, Android, Slack, GitHub</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Understands the full local codebase — not just the open file</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Git-native from day one — branches, commits, and PRs without context switching</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Scheduled tasks and multi-session parallel runs (desktop app)</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> Requires a Claude subscription (Pro/Max or API key); single-model (Claude Opus/Sonnet only)</div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-cursor">⌖</div>
+        <div><h4>Cursor</h4><span>Best for teams wanting model choice in IDE</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Every top model available — GPT-5, Claude Opus, Gemini, Grok per conversation</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Cloud Agents — autonomous agents running in parallel on their own machines for days</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Deepest third-party integration: GitHub, Jira, Linear, Slack, Notion, Bitbucket</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Most mature enterprise offering: SSO, self-hosted, privacy mode, spending controls</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> Not IBM-governed; requires Cursor account; not suitable for IBM internal codebase use (use IBM Bob)</div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-ibm">B</div>
+        <div><h4>IBM Bob</h4><span>Best for IBM software teams</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Only coding agent approved for all IBM internal product codebases</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Intelligent model routing — selects model by task complexity, cost, and context</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">IBM Enterprise: team spending limits, admin dashboard, audit trails</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Three-mode workflow (Ask → Plan → Code) keeps humans in control throughout</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> IBM internal only — not available to clients or for non-IBM work; no free model selection (routing is automatic)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enterprise comparison -->
+  <div class="cat-section c4 mt3" style="margin-bottom:20px;">
+    <h3>Enterprise Platforms: ICA vs. ICA Edge vs. Microsoft Copilot</h3>
+  </div>
+  <div class="compare-grid">
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-ibm">I</div>
+        <div><h4>IBM ICA</h4><span>Best for IBM Consulting delivery teams</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Full IBM Consulting workflow: from advisory → design → development → operations</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Multi-agent orchestration (Agentic App Studio) with low-code builder</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Deep connectors: SAP, ServiceNow, Salesforce, enterprise ERP/CRM</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Process Studio — AI-powered business process transformation to agentic workflows</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> IBM Consulting internal — requires w3ID; optimised for watsonx models</div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-ibm">E</div>
+        <div><h4>IBM ICA Edge</h4><span>Best for sensitive, offline, or desktop-first work</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Only tool here that runs <em>entirely locally</em> — sensitive data never leaves your laptop</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Agentic desktop with browser automation — no API key needed for consulting accelerators</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Pre-built Skills for consulting deliverables — the fastest path to a client-grade artifact</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">All geos supported; can be used on client-provided laptops</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> Business-user focused — not a code editor; IBM Consulting only; still maturing (GA Aug 2026)</div>
+      </div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-header">
+        <div class="tool-icon icon-ms">M</div>
+        <div><h4>Microsoft Copilot</h4><span>Best for Microsoft 365 native organisations</span></div>
+      </div>
+      <div class="cmp-body">
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Deepest Microsoft 365 integration — Word, Excel, PowerPoint, Outlook, Teams in one experience</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Microsoft Graph grounding — your emails, calendar, files, and org data in the context</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Work IQ — intelligent layer for agents to reason across organisational content</div></div>
+        <div class="strength-row"><span class="s-icon">★</span><div class="s-text">Enterprise Data Protection on all tiers; EUDB and Microsoft Purview compliance</div></div>
+        <div class="limit-row"><strong>Watch out:</strong> Not for code generation tasks; Premium license required for full Graph grounding; Microsoft ecosystem lock-in</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SLIDE 7 — WHEN TO USE WHAT
+══════════════════════════════════════════ -->
+<section class="slide" id="s7">
+  <div class="slide-header">
+    <div class="slide-num">07 — Decision Guide</div>
+    <h2>When to Use Which Tool</h2>
+    <p>A practical guide based on the task at hand — not the tool's brand.</p>
+  </div>
+
+  <div class="wtu-grid">
+    <div class="wtu-card">
+      <h4>Writing, research, or Q&amp;A</h4>
+      <ul>
+        <li>ChatGPT — complex reasoning, technical analysis</li>
+        <li>Claude — long documents, legal/policy review, polished writing</li>
+        <li>Gemini — research with Google Workspace context or real-time search</li>
+        <li>ICA Chat — consulting context, IBM IP-protected outputs</li>
+      </ul>
+    </div>
+    <div class="wtu-card">
+      <h4>Working in Microsoft 365</h4>
+      <ul>
+        <li>Microsoft Copilot — the only right answer here</li>
+        <li>Drafting in Word, analysing in Excel, summarising in Outlook</li>
+        <li>Meeting transcription and action items in Teams</li>
+        <li>Agents that connect to SharePoint and org data</li>
+      </ul>
+    </div>
+    <div class="wtu-card">
+      <h4>Writing &amp; reviewing IBM code</h4>
+      <ul>
+        <li>IBM Bob — the only approved agentic coding tool for IBM product codebases</li>
+        <li>Use Ask mode to understand, Plan to design, Code to implement</li>
+        <li>ICA for Coding Agents — brings ICA knowledge and tools into your IDE alongside Bob</li>
+      </ul>
+    </div>
+    <div class="wtu-card">
+      <h4>Non-IBM code / open-source / client deliveries</h4>
+      <ul>
+        <li>Cursor — best IDE experience, model choice, enterprise controls</li>
+        <li>Claude Code — deepest local codebase understanding, widest surface options</li>
+        <li>Antigravity — if your stack is Google Cloud / Firebase</li>
+        <li>Codex — async tasks against GitHub repos, no local install needed</li>
+      </ul>
+    </div>
+    <div class="wtu-card">
+      <h4>Building IBM Consulting deliverables</h4>
+      <ul>
+        <li>ICA Edge — RFPs, proposals, decks, BPMN flows, SOW reviews</li>
+        <li>Data never leaves your laptop; runs inside a secure microVM</li>
+        <li>Pre-built consulting Skills make first draft fast</li>
+        <li>Browser automation drives SAP/ServiceNow without an API</li>
+      </ul>
+    </div>
+    <div class="wtu-card">
+      <h4>Client data &amp; confidential material</h4>
+      <ul>
+        <li>ICA Edge — data stays on-device, microVM sandboxed, all geos</li>
+        <li>IBM Bob — IBM-governed, no SPI/PHI processed, approved for IBM IP</li>
+        <li>ICA (Regional Instance) — web-based, use a client regional instance per SOW</li>
+        <li>Avoid: public consumer tiers of ChatGPT, Gemini, Claude without enterprise contracts</li>
+      </ul>
+    </div>
+    <div class="wtu-card">
+      <h4>Agentic, multi-step automation</h4>
+      <ul>
+        <li>ICA (Agentic App Studio) — build governed multi-agent workflows at enterprise scale</li>
+        <li>ICA Edge — desktop-local task plans with approval-before-execute</li>
+        <li>Claude Cowork — business-task automation across SaaS tools</li>
+        <li>Cursor Cloud Agents — long-running parallel coding tasks</li>
+      </ul>
+    </div>
+    <div class="wtu-card">
+      <h4>Process analysis &amp; business transformation</h4>
+      <ul>
+        <li>ICA Process Studio — transforms business processes into agentic blueprints</li>
+        <li>ICA Edge — BPMN 2.0 diagrams direct to Signavio</li>
+        <li>ChatGPT / Claude — process documentation, gap analysis, workshop prep</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SLIDE 8 — SUMMARY
+══════════════════════════════════════════ -->
+<section class="slide" id="s8">
+  <div class="slide-header">
+    <div class="slide-num">08 — Summary</div>
+    <h2>One-Line Summary for Each Tool</h2>
+    <p>The essential mental model — what each tool fundamentally <em>is</em>.</p>
+  </div>
+
+  <div class="summary-grid">
+    <div class="sum-card">
+      <div class="sum-icon">🔵</div>
+      <div class="sum-name">Google Gemini</div>
+      <div class="sum-one">Google's multimodal AI assistant — best when your work lives in Google Workspace.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">⊙</div>
+      <div class="sum-name">OpenAI ChatGPT</div>
+      <div class="sum-one">The world's most-used AI assistant — strongest reasoning models and broadest developer API.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">🟠</div>
+      <div class="sum-name">Anthropic Claude</div>
+      <div class="sum-one">The AI problem-solver — best for long documents, nuanced writing, and autonomous business tasks.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">▲</div>
+      <div class="sum-name">Google Antigravity</div>
+      <div class="sum-one">Google's agentic coding platform — IDE-agnostic desktop app for developers on the Google stack.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">◻</div>
+      <div class="sum-name">OpenAI Codex</div>
+      <div class="sum-one">A cloud coding agent — kicks off async, parallel GitHub tasks without local setup.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">✦</div>
+      <div class="sum-name">Anthropic Claude Code</div>
+      <div class="sum-one">A local coding agent with the broadest surface — terminal, IDE, desktop, web, CI/CD.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">⌖</div>
+      <div class="sum-name">Cursor</div>
+      <div class="sum-one">The AI-native IDE — a complete VS Code replacement with every frontier model and cloud agents.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">🔷</div>
+      <div class="sum-name">IBM Bob</div>
+      <div class="sum-one">IBM's agentic IDE partner — the only coding agent approved for IBM internal product codebases.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">🔹</div>
+      <div class="sum-name">IBM ICA</div>
+      <div class="sum-one">IBM Consulting's AI delivery platform — governed assistants, agents, and workflows for the full project lifecycle.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">🛡</div>
+      <div class="sum-name">IBM ICA Edge</div>
+      <div class="sum-one">Your private AI appliance — a sandboxed desktop agent that plans, executes, and delivers without data leaving your laptop.</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-icon">🔷</div>
+      <div class="sum-name">Microsoft Copilot</div>
+      <div class="sum-one">Microsoft's M365-native AI — the right tool when your work lives in Word, Excel, Outlook, and Teams.</div>
+    </div>
+  </div>
+
+  <div class="callout mt3" style="border-color:rgba(54,201,142,0.3); background:rgba(54,201,142,0.08);">
+    <strong style="color:#36c98e;">The core mental model:</strong> Choose by <strong>where your work lives</strong> (Microsoft 365 → Copilot; Google Workspace → Gemini; IBM codebase → Bob; Consulting delivery → ICA/Edge), then by <strong>what you're doing</strong> (writing → Claude; reasoning → ChatGPT; coding → Bob/Cursor/Claude Code; business automation → ICA; local-sensitive work → ICA Edge).
+  </div>
+
+  <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--border); text-align:center; font-size:12px; color:var(--muted);">
+    Made with IBM Bob &nbsp;·&nbsp; IBM Consulting Advantage &nbsp;·&nbsp; Sources: antigravity.google/docs · code.claude.com/docs · cursor.com/docs · bob.ibm.com/docs · learn.microsoft.com · ICA local documentation
+  </div>
+</section>
+
+</body>
+</html>
